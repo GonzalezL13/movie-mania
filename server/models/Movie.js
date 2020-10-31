@@ -15,6 +15,11 @@ const movieSchema = new Schema({
     genre: {
         type: String,
         required: true,
+    },
+    //imdbID from api 
+    movieID: {
+        type: String,
+        required: true
     }
 });
 
