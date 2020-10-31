@@ -16,8 +16,8 @@ const userController = {
     User.findOne({ _id: params.id })
       //pull in movie data
       .populate({
-      path: "savedMovies", // is this right?
-      select: "-__v",
+        path: "savedMovies", // is this right?
+        select: "-__v",
       })
       .select("-__v")
       .then((dbUserData) => {
@@ -63,7 +63,7 @@ const userController = {
           res.status(404).json({ message: "No user found with this id" });
           return;
         }
-        res.json({ message: "User successfully deleted"});
+        res.json({ message: "User successfully deleted" });
       })
       .catch((err) => res.status(400).json(err));
   },
@@ -102,7 +102,7 @@ const userController = {
             .status(404)
             .json({ message: "No user found with this id" });
         }
-        res.json({ message: "Movie successfully deleted"});
+        res.json({ message: "Movie successfully deleted" });
       })
       .catch((err) => {
         console.log(err);
