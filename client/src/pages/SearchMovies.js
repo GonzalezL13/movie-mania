@@ -43,7 +43,8 @@ const SearchMovies = () => {
 
       const movieData = Search.map((movie) => ({
         title: movie.Title,
-        poster: movie.Poster
+        poster: movie.Poster,
+        plot: movie.Plot
       }));
 
       setSearchedMovies(movieData);
@@ -117,8 +118,8 @@ const SearchMovies = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  <p className='small'>Authors: {movie.authors}</p>
-                  <Card.Text>{movie.plot}</Card.Text>
+                  <p className='small'>Plot: {movie.Plot}</p>
+                  <Card.Text>{movie.Plot}</Card.Text>
                   {/* {Auth.loggedIn() && (
                     // <Button
                     //   disabled={savedMovieIds?.some((savedId) => savedId === movie.movieId)}
