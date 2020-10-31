@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //import pages & components here
 import SearchMovies from './pages/SearchMovies';
+import Navbar from './components/Navbar';
 
 //backend connection
 function App() {
@@ -21,7 +22,7 @@ function App() {
   return (
       <Router>
         <>
-          {/* <Navbar /> */}
+          <Navbar />
           <Switch>
             <Route exact path="/" component={SearchMovies} />
             {/* <Route exact path="/saved" component={SavedBooks} />  */}
