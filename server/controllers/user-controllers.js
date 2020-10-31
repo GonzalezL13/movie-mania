@@ -68,16 +68,39 @@ const userController = {
       .catch((err) => res.status(400).json(err));
   },
 
-  //add movie to watchlist
+  //add movie
   addMovie(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.id }, //find user by id
-      { $push: { savedMovies: body } },
+      { $push: { savedMovies: body } }, //would this be body or id?
       { new: true }
     )
       .then((dbUserData) => {
         if (!dbUserData) {
-          return res.status(404).json({ message: "No user with this Id" });
+          return res
+            .status(404)
+            .json({ message: "No user found with this Id" });
+        }
+        res.json(dbUserData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  },
+
+  //delete movie
+  deleteMovie(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.id },
+      { $pull: { savedMovies: { movieID: params.movieID } } },
+      { new: true }
+    )
+      .then((dbUserData) => {
+        if (!dbUserData) {
+          return res
+            .status(404)
+            .json({ message: "No user found with this id" });
         }
         res.json(dbUserData);
       })
