@@ -3,9 +3,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import './App.css';
 
+//import pages & components here
 import SearchMovies from './pages/SearchMovies';
-// import SavedMovies from "./pages/SavedMovies";
-// import Navbar from "./components/Navbar";
 
 //backend connection
 function App() {

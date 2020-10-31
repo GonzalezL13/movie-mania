@@ -1,14 +1,19 @@
-// import axios from "axios";
+import axios from "axios";
 
-// export default {
-//   // Gets something
+export default {
 
-//   getSomething: function(query) {
-//     return axios.get("/api/something", { params: { query: "Thing looking for" } });
-//   },
+  getUser: function({params}) {
+    return axios.get("/api/users:id", { params: { _id: params.id } });
+  },
 
-//   // Saves data to the database
-//   saveSomething: function(somethingData) {
-//     return axios.post("/api/something", somethingData);
-//   }
-// };
+  createUser: function(userData) {
+    return axios.post("/api/users", userData);
+  }
+};
+
+
+//Axios examples
+// axios.get(url[, config])
+// axios.delete(url[, config])
+// axios.post(url[, data[, config]])
+// axios.put(url[, data[, config]])
