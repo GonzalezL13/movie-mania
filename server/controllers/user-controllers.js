@@ -14,11 +14,11 @@ const userController = {
   //get user by id
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
-      // //pull in movie data
-      // .populate({
-      // path: "savedMovies",
-      // select: "-__v",
-      // })
+      //pull in movie data
+      .populate({
+      path: "savedMovies", // is this right?
+      select: "-__v",
+      })
       .select("-__v")
       .then((dbUserData) => {
         if (!dbUserData) {
