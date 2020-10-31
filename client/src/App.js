@@ -1,7 +1,7 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
-import './App.css';
+// import './App.css';
 
 //backend conntection to server - graphql
 const client = new ApolloClient({

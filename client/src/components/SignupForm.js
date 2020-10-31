@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import Auth from '../utils/auth';
 import { createUser } from '../utils/API';
-import { useState } from 'react';
 
 
-const SignupForm = () => {
+
+const SignUpForm = () => {
     const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
@@ -23,12 +24,14 @@ const SignupForm = () => {
         }
 
         try {
+            // create the createUser function in (/utils/API)
             const response = await createUser(userFormData);
 
             if (!response.ok) {
                 throw new Error('Something went wrong!');
             }
 
+            // create JWT tokens in auth file to be used here
             const { token, user } = await response.json();
             console.log(user);
             Auth.login(token);
@@ -100,5 +103,5 @@ const SignupForm = () => {
     );
 };
 
-export default SignupForm;
+export default SignUpForm;
 
