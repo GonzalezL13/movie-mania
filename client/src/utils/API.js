@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
 
   getUser: function({params}) {
-    return axios.get("/api/users:id", { params: { _id: params.id } });
+    return axios.get("/api/users:id", { _id: params.id } );
   },
 
   createUser: function(userData) {
