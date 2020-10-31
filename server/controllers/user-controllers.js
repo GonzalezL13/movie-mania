@@ -14,10 +14,11 @@ const userController = {
   //get user by id
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
-      //pull in movie data
+      // //pull in movie data
       // .populate({
-      //path: "movies" - movies is the key in the user model
-      //})
+      // path: "savedMovies",
+      // select: "-__v",
+      // })
       .select("-__v")
       .then((dbUserData) => {
         if (!dbUserData) {
@@ -65,6 +66,25 @@ const userController = {
         res.json(dbUserData);
       })
       .catch((err) => res.status(400).json(err));
+  },
+
+  //add movie to watchlist
+  addMovie(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.id }, //find user by id
+      { $push: { savedMovies: body } },
+      { new: true }
+    )
+      .then((dbUserData) => {
+        if (!dbUserData) {
+          return res.status(404).json({ message: "No user with this Id" });
+        }
+        res.json(dbUserData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
   },
 };
 
