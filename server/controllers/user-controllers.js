@@ -63,7 +63,7 @@ const userController = {
           res.status(404).json({ message: "No user found with this id" });
           return;
         }
-        res.json(dbUserData);
+        res.json({ message: "User successfully deleted"});
       })
       .catch((err) => res.status(400).json(err));
   },
@@ -102,7 +102,7 @@ const userController = {
             .status(404)
             .json({ message: "No user found with this id" });
         }
-        res.json(dbUserData);
+        res.json({ message: "Movie successfully deleted"});
       })
       .catch((err) => {
         console.log(err);
