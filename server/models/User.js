@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const movieSchema = require("./Movie");
-//require bcrypt
+const bcrypt = require("bcrypt");
 
 const userSchema = new Schema(
   {
@@ -31,7 +31,18 @@ const userSchema = new Schema(
 );
 
 // hash user password using bcrypt
-// -- code here --
+userSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+
+  next();
+});
+
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
 
 //show number of movies saved by a user
 userSchema.virtual("movieCount").get(function () {
