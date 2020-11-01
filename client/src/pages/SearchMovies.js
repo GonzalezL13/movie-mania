@@ -44,7 +44,7 @@ const SearchMovies = () => {
       const movieData = Search.map((movie) => ({
         title: movie.Title,
         poster: movie.Poster,
-        plot: movie.Plot
+        year: movie.Year
       }));
 
       setSearchedMovies(movieData);
@@ -78,7 +78,7 @@ const SearchMovies = () => {
   // };
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
+      <Jumbotron fluid className='text-light bg-info'>
         <Container>
           <h1>Movie Generator!</h1>
           <Form onSubmit={handleFormSubmit}>
@@ -94,8 +94,8 @@ const SearchMovies = () => {
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button type='submit' variant='success' size='lg'>
-                  Submit Search
+                <Button type='submit' size='lg' className='bg-dark'>
+                  Search Now
                 </Button>
               </Col>
             </Form.Row>
@@ -118,8 +118,8 @@ const SearchMovies = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  <p className='small'>Plot: {movie.Plot}</p>
-                  <Card.Text>{movie.Plot}</Card.Text>
+                  <p className='medium'>Year: {movie.year}</p>
+                  <Card.Text>{movie.year}</Card.Text>
                   {/* {Auth.loggedIn() && (
                     // <Button
                     //   disabled={savedMovieIds?.some((savedId) => savedId === movie.movieId)}
