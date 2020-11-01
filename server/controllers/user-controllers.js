@@ -1,4 +1,5 @@
 const { User, Movie } = require("../models"); // require models
+const { signToken } = require("../utils/auth");
 
 const userController = {
   //get all users
@@ -32,14 +33,32 @@ const userController = {
         res.status(400).json(err);
       });
   },
-  //create a new user
-  createUser({ body }, res) {
-    User.create(body)
-      .then((dbUserData) => res.json(dbUserData))
-      .catch((err) => {
-        console.log(err);
-        res.status(400).json(err);
-      });
+
+  //create a new user - test the async function
+  async createUser({ body }, res) {
+    const user = await User.create(body);
+
+    if (!user) {
+      return res.status(400).json({ message: 'Something is wrong!' });
+    }
+    const token = signToken(user);
+    res.json({ token, user });
+  },
+
+  //post user login - test the async function
+  async Userlogin({ body }, res) {
+    const user = await User.findOne({ $or: [{ username: body.username }, { email: body.email }] });
+    if (!user) {
+      return res.status(400).json({ message: "Can't find this user" });
+    }
+
+    const correctPw = await user.isCorrectPassword(body.password);
+
+    if (!correctPw) {
+      return res.status(400).json({ message: 'Wrong password!' });
+    }
+    const token = signToken(user);
+    res.json({ token, user });
   },
 
   //update a user
