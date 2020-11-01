@@ -11,7 +11,7 @@ import Navbar from './components/Navbar';
 function App() {
   Axios({
     method: "GET",
-    url: "http:localhost:3001",
+    url: "http://localhost:3001/",
     headers: {
       "Content-Type": "application/json"
     }

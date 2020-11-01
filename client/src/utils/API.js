@@ -1,5 +1,16 @@
+import axios from "axios";
+
+export const getMe = (token) => {
+  return axios('/api/users/me', {
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+  });
+};
+
 export const createUser = (userData) => {
-  return fetch('/api/users', {
+  return axios('/api/users', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -9,7 +20,7 @@ export const createUser = (userData) => {
 };
 
 export const loginUser = (userData) => {
-  return fetch('/api/users/login', {
+  return axios('/api/users/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -21,7 +32,6 @@ export const loginUser = (userData) => {
 
 
 
-// import axios from "axios";
 
 // export default {
 
