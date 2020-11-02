@@ -4,7 +4,6 @@ import { createUser } from '../utils/API';
 import { Form, Button, Alert } from 'react-bootstrap';
 
 
-
 const SignUpForm = () => {
     const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
     const [validated] = useState(false);
