@@ -9,15 +9,15 @@ import Navbar from './components/Navbar';
 
 //backend connection
 function App() {
-  Axios({
-    method: "GET",
-    url: "http:localhost:3001",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }).then(res => {
-    console.log(res.data.message);
-  })
+  // Axios({
+  //   method: "GET",
+  //   url: "http:localhost:3001",
+  //   headers: {
+  //     "Content-Type": "application/json"
+  //   }
+  // }).then(res => {
+  //   console.log(res.data.message);
+  // })
 
   return (
       <Router>

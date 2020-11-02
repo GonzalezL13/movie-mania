@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Auth from '../utils/auth';
-import { createUser } from '../utils/API';
+import createUser from '../utils/API';
 import { Form, Button, Alert } from 'react-bootstrap';
 
 
@@ -12,6 +12,7 @@ const SignUpForm = () => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
+
         setUserFormData({ ...userFormData, [name]: value });
     };
 
@@ -27,6 +28,7 @@ const SignUpForm = () => {
         try {
             // create the createUser function in (/utils/API)
             const response = await createUser(userFormData);
+            console.log(response);
 
             if (!response.ok) {
                 throw new Error('Something went wrong!');
@@ -47,7 +49,6 @@ const SignUpForm = () => {
             password: '',
         });
     };
-
     return (
         <>
             <Form noValidate validated={validated} onSubmit={handleFormSubmit}>

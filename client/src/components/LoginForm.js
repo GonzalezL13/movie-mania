@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 //create loginUser function in utils/API
-import { loginUser } from '../utils/API';
+import loginUser from '../utils/API';
 //create JWT auth and tokens for Auth use
 import Auth from '../utils/auth';
 
