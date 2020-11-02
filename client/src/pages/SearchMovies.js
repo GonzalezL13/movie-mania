@@ -3,9 +3,9 @@
 import React, { useState } from 'react'; //add useEffect
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
-// import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
+import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
 
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 
 const SearchMovies = () => {
   // create state for holding returned api data
@@ -14,15 +14,15 @@ const SearchMovies = () => {
   const [searchInput, setSearchInput] = useState('');
 
   // // create state to hold saved movieID values
-  // const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
+  const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
 
   // const [saveMovie, { error }] = useMutation(SAVE_MOVIE);
 
   // set up useEffect hook to save `savedMovieIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
-  // useEffect(() => {
-  //   return () => saveMovieIds(savedMovieIds);
-  // });
+  useEffect(() => {
+    return () => saveMovieIds(savedMovieIds);
+  });
 
   // create method to search for books and set state on form submit
   const handleFormSubmit = async (event) => {
@@ -33,7 +33,7 @@ const SearchMovies = () => {
     }
 
     try {
-      const response = await fetch(`http://www.omdbapi.com/?s=${searchInput}&apikey=a9e94ec0`);
+      const response = await fetch(`http://www.omdbapi.com/?s=${searchInput}&type=movie&apikey=a9e94ec0`);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
@@ -44,7 +44,7 @@ const SearchMovies = () => {
       const movieData = Search.map((movie) => ({
         title: movie.Title,
         poster: movie.Poster,
-        plot: movie.Plot
+        year: movie.Plot
       }));
 
       setSearchedMovies(movieData);
@@ -121,7 +121,7 @@ const SearchMovies = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  <p className='small'>Plot: {movie.Plot}</p>
+                  <p className='small'>Year: {movie.year}</p>
                   <Card.Text>{movie.Plot}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
