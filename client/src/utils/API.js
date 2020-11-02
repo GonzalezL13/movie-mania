@@ -29,17 +29,24 @@ export const loginUser = (userData) => {
   });
 };
 
+// save movie data for a logged in user
+export const saveMovie = (movieData, token) => {
+  return axios('/api/users', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(movieData),
+  });
+};
 
-
-
-
-// export default {
-
-//   getUser: function({params}) {
-//     return axios.get("/api/users:id", { _id: params.id } );
-//   },
-
-//   createUser: function(userData) {
-//     return axios.post("/api/users", userData);
-//   }
-// };
+// remove saved movie data for a logged in user
+export const deleteMovie = (movieID, token) => {
+  return axios(`/api/users/movies/${movieID}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+};
