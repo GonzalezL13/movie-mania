@@ -3,9 +3,9 @@
 import React, { useState } from 'react'; //add useEffect
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
-import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
+// import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
 
-import Auth from '../utils/auth';
+// import Auth from '../utils/auth';
 
 const SearchMovies = () => {
   // create state for holding returned api data
@@ -14,15 +14,15 @@ const SearchMovies = () => {
   const [searchInput, setSearchInput] = useState('');
 
   // // create state to hold saved movieID values
-  const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
+  // const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
 
   // const [saveMovie, { error }] = useMutation(SAVE_MOVIE);
 
   // set up useEffect hook to save `savedMovieIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
-  useEffect(() => {
-    return () => saveMovieIds(savedMovieIds);
-  });
+  // useEffect(() => {
+  //   return () => saveMovieIds(savedMovieIds);
+  // });
 
   // create method to search for books and set state on form submit
   const handleFormSubmit = async (event) => {
@@ -33,7 +33,7 @@ const SearchMovies = () => {
     }
 
     try {
-      const response = await fetch(`http://www.omdbapi.com/?s=${searchInput}&type=movie&apikey=a9e94ec0`);
+      const response = await fetch(`http://www.omdbapi.com/?s=${searchInput}&apikey=a9e94ec0`);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
@@ -44,7 +44,7 @@ const SearchMovies = () => {
       const movieData = Search.map((movie) => ({
         title: movie.Title,
         poster: movie.Poster,
-        year: movie.Plot
+        plot: movie.Plot
       }));
 
       setSearchedMovies(movieData);
@@ -54,9 +54,9 @@ const SearchMovies = () => {
     }
   };
 
-  // create function to handle saving a MOVIE to our database
+  // // create function to handle saving a book to our database
   // const handleSaveMovie = async (movieId) => {
-  //   // find the movie in `searchedMOvies` state by the matching id
+  //   // find the book in `searchedBooks` state by the matching id
   //   const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
 
   //   // get token
@@ -67,14 +67,11 @@ const SearchMovies = () => {
   //   }
 
   //   try {
-  //     const response = await saveMovie(movieToSave, token);
-
-  //     if (!response.ok) {
-  //       throw new Error('something went wrong!');
-  //     }
-
-  //     // if movie successfully saves to user's account, save MOvie id to state
-  //     setSavedMovieIds([...savedMovieIds, MovieToSave.movieId]);
+  //     const { data } = await saveMovie({
+  //       variables: { movieData: { ...movieToSave } },
+  //     });
+  //     console.log(savedMovieIds);
+  //     setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
   //   } catch (err) {
   //     console.error(err);
   //   }
@@ -121,17 +118,17 @@ const SearchMovies = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  <p className='small'>Year: {movie.year}</p>
+                  <p className='small'>Plot: {movie.Plot}</p>
                   <Card.Text>{movie.Plot}</Card.Text>
                   {/* {Auth.loggedIn() && (
-                    <Button
-                      disabled={savedMovieIds?.some((savedId) => savedId === movie.movieId)}
-                      className='btn-block btn-info'
-                      onClick={() => handleSaveMovie(movie.movieId)}>
-                      {savedMovieIds?.some((savedId) => savedId === movie.movieId)
-                        ? 'Movie Already Saved!'
-                        : 'Save This Movie!'}
-                    </Button>
+                    // <Button
+                    //   disabled={savedMovieIds?.some((savedId) => savedId === movie.movieId)}
+                    //   className='btn-block btn-info'
+                    //   onClick={() => handleSaveMovie(movie.movieId)}>
+                    //   {savedMovieIds?.some((savedId) => savedId === movie.movieId)
+                    //     ? 'Movie Already Saved!'
+                    //     : 'Save This Movie!'}
+                    // </Button>
                   )} */}
                 </Card.Body>
               </Card>
