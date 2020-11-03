@@ -1,106 +1,137 @@
-import { useState } from 'react';
-import Auth from '../utils/auth';
-import { createUser } from '../utils/API';
-import { Form, Button, Alert } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Form, Button, Alert } from "react-bootstrap";
+
+import Auth from "../utils/auth";
+import { createUser } from "../utils/API";
 
 
 const SignUpForm = () => {
-    const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
-    const [validated] = useState(false);
-    const [showAlert, setShowAlert] = useState(false);
+    //creating a const and settings its value state to empty strings
+  const [userFormData, setUserFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const [validated] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setUserFormData({ ...userFormData, [name]: value });
-    };
 
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
+//   useEffect(() => {
+//     if (error) {
+//       setShowAlert(true);
+//     } else {
+//       setShowAlert(false);
+//     }
+//   });
 
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    //... takes an existing array and adds an element to it
+    setUserFormData({ ...userFormData, [name]: value });
+  };
 
-        try {
-            // create the createUser function in (/utils/API)
-            const response = await createUser(userFormData);
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
 
-            if (!response.ok) {
-                throw new Error('Something went wrong!');
-            }
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
 
-            // create JWT tokens in auth file to be used here
-            const { token, user } = await response.json();
-            console.log(user);
-            Auth.login(token);
-        } catch (err) {
-            console.error(err);
-            setShowAlert(true);
-        }
+    try {
+      // create the createUser function in (/utils/API)
+    //   const response = await createUser(userFormData);
+    const { data } = await createUser({
+        variables: { ...userFormData },
+    });
+        console.log(data);
 
-        setUserFormData({
-            username: '',
-            email: '',
-            password: '',
-        });
-    };
+      Auth.login(data.createUser.token);
+    } catch (err) {
+      console.error(err);
+    //   setShowAlert(true);
+    }
 
-    return (
-        <>
-            <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-                <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-                    Something went wrong with your signup!
-                </Alert>
+    setUserFormData({
+      username: "",
+      email: "",
+      password: "",
+    });
+  };
 
-                <Form.Group>
-                    <Form.Label htmlFor='username'>Username</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='Your username'
-                        name='username'
-                        onChange={handleInputChange}
-                        value={userFormData.username}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
-                </Form.Group>
+  return (
+    <>
+      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+        <Alert
+          dismissible
+          onClose={() => setShowAlert(false)}
+          show={showAlert}
+          variant="danger"
+        >
+          Something went wrong with your signup!
+        </Alert>
 
-                <Form.Group>
-                    <Form.Label htmlFor='email'>Email</Form.Label>
-                    <Form.Control
-                        type='email'
-                        placeholder='Your email address'
-                        name='email'
-                        onChange={handleInputChange}
-                        value={userFormData.email}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
-                </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="username">Username</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Your username"
+            name="username"
+            onChange={handleInputChange}
+            value={userFormData.username}
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            Username is required!
+          </Form.Control.Feedback>
+        </Form.Group>
 
-                <Form.Group>
-                    <Form.Label htmlFor='password'>Password</Form.Label>
-                    <Form.Control
-                        type='password'
-                        placeholder='Your password'
-                        name='password'
-                        onChange={handleInputChange}
-                        value={userFormData.password}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
-                </Form.Group>
-                <Button
-                    disabled={!(userFormData.username && userFormData.email && userFormData.password)}
-                    type='submit'
-                    variant='success'>
-                    Submit
-                </Button>
-            </Form>
-        </>
-    );
+        <Form.Group>
+          <Form.Label htmlFor="email">Email</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Your email address"
+            name="email"
+            onChange={handleInputChange}
+            value={userFormData.email}
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            Email is required!
+          </Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label htmlFor="password">Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Your password"
+            name="password"
+            onChange={handleInputChange}
+            value={userFormData.password}
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            Password is required!
+          </Form.Control.Feedback>
+        </Form.Group>
+        <Button
+          disabled={
+            !(
+              userFormData.username &&
+              userFormData.email &&
+              userFormData.password
+            )
+          }
+          type="submit"
+          variant="success"
+        >
+          Submit
+        </Button>
+      </Form>
+    </>
+  );
 };
 
 export default SignUpForm;

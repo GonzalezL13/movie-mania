@@ -1,7 +1,7 @@
-import Axios from "axios";
+import axios from "axios";
 
 export const getMe = (token) => {
-  return Axios('/api/users/me', {
+  return axios('/api/users/me', {
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
@@ -10,7 +10,7 @@ export const getMe = (token) => {
 };
 
 export const createUser = (userData) => {
-  return Axios('/api/users', {
+  return axios('/api/users', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ export const createUser = (userData) => {
 };
 
 export const loginUser = (userData) => {
-  return Axios('/api/users/login', {
+  return axios('/api/users/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export const loginUser = (userData) => {
 
 // save movie data for a logged in user
 export const saveMovie = (movieData, token) => {
-  return Axios('/api/users', {
+  return axios('/api/users', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ export const saveMovie = (movieData, token) => {
 
 // remove saved movie data for a logged in user
 export const deleteMovie = (movieID, token) => {
-  return Axios(`/api/users/movies/${movieID}`, {
+  return axios(`/api/users/movies/${movieID}`, {
     method: 'DELETE',
     headers: {
       authorization: `Bearer ${token}`,
