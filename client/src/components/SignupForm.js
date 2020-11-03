@@ -6,7 +6,7 @@ import { createUser } from "../utils/API";
 
 
 const SignUpForm = () => {
-    //creating a const and settings its value state to empty strings
+    //creating a const and setting its value state to empty strings
   const [userFormData, setUserFormData] = useState({
     username: "",
     email: "",
@@ -43,8 +43,9 @@ const SignUpForm = () => {
       // create the createUser function in (/utils/API)
     //   const response = await createUser(userFormData);
     const { data } = await createUser({
-        variables: { ...userFormData },
+        userFormData
     });
+
         console.log(data);
 
       Auth.login(data.createUser.token);

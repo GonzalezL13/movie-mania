@@ -35,8 +35,9 @@ const userController = {
   },
 
   //create a new user - test the async function
-  async createUser({ body }, res) {
-    const user = await User.create(body);
+  async createUser(req, res) {
+    console.log(req.body)
+    const user = await User.create(req.body.userData.userFormData);
 
     if (!user) {
       return res.status(400).json({ message: 'Something is wrong!' });
