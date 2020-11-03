@@ -78,9 +78,9 @@ const SearchMovies = () => {
   // };
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
+      <Jumbotron fluid block style={{backgroundColor: '#6F1A91', color: '#1ACDC8'}}>
         <Container>
-          <h1>Movie Generator!</h1>
+          <h1>Movie Mania Search!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>

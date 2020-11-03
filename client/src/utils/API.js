@@ -16,7 +16,7 @@ export const createUser = (userData) => {
      })
   };
 
-export const loginUser = (userData) => {
+export const Userlogin = (userData) => {
   return axios('/api/users/login', {
     method: 'POST',
     headers: {

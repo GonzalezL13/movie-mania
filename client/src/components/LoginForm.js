@@ -26,18 +26,20 @@ const LoginForm = () => {
 
         try {
             //using yet to be created loginUser function from utils/API
-            const response = await Userlogin(userFormData);
+            const { data } = await Userlogin({
+                userFormData
+            });
+            console.log(data)
+            // if (!response.ok) {
+            //     throw new Error('Something went wrong!');
+            // }
 
-            if (!response.ok) {
-                throw new Error('Something went wrong!');
-            }
-
-            const { token, user } = await response.json();
-            console.log(user);
-            Auth.login(token);
+            // const { token, user } = await response.json();
+            // console.log(user);
+            Auth.login(data.Userlogin.token);
         } catch (err) {
             console.error(err);
-            setShowAlert(true);
+            // setShowAlert(true);
         }
 
         setUserFormData({
