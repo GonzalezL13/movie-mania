@@ -10,9 +10,9 @@ const AppNavbar = () => {
 
     return (
         <>
-            <Navbar block style={{backgroundColor: '#AA0549'}} expand='lg'>
+            <Navbar block style={{backgroundColor: '#217DA8'}} expand='lg'>
                 <Container fluid>
-                    <Navbar.Brand as={Link} to='/' block style={{color: '#1ACDC8'}}>
+                    <Navbar.Brand as={Link} to='/' block style={{color: '#1ACDC8', fontWeight: 'bold'}}>
                         Movie Mania Search
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls='navbar' />
