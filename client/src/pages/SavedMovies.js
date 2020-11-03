@@ -54,7 +54,7 @@ const SavedMovies = () => {
             const updatedUser = await response.json();
             setUserData(updatedUser);
             // upon success, remove book's id from localStorage
-            removeMovieId(MovieId);
+            removeMovieId(movieId);
         } catch (err) {
             console.error(err);
         }

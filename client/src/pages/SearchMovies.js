@@ -55,30 +55,30 @@ const SearchMovies = () => {
   };
 
   // create function to handle saving a MOVIE to our database
-  const handleSaveMovie = async (movieId) => {
-    // find the movie in `searchedMOvies` state by the matching id
-    const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
+  // const handleSaveMovie = async (movieId) => {
+  //   // find the movie in `searchedMOvies` state by the matching id
+  //   const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
 
-    // get token
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+  //   // get token
+  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!token) {
-      return false;
-    }
+  //   if (!token) {
+  //     return false;
+  //   }
 
-    try {
-      const response = await saveMovie(movieToSave, token);
+  //   try {
+  //     const response = await saveMovie(movieToSave, token);
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+  //     if (!response.ok) {
+  //       throw new Error('something went wrong!');
+  //     }
 
-      // if movie successfully saves to user's account, save MOvie id to state
-      setSavedMovieIds([...savedMovieIds, MovieToSave.movieId]);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  //     // if movie successfully saves to user's account, save MOvie id to state
+  //     setSavedMovieIds([...savedMovieIds, MovieToSave.movieId]);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
@@ -123,7 +123,7 @@ const SearchMovies = () => {
                   <Card.Title>{movie.title}</Card.Title>
                   <p className='small'>Plot: {movie.Plot}</p>
                   <Card.Text>{movie.Plot}</Card.Text>
-                  {Auth.loggedIn() && (
+                  {/* {Auth.loggedIn() && (
                     <Button
                       disabled={savedMovieIds?.some((savedId) => savedId === movie.movieId)}
                       className='btn-block btn-info'
@@ -132,7 +132,7 @@ const SearchMovies = () => {
                         ? 'Movie Already Saved!'
                         : 'Save This Movie!'}
                     </Button>
-                  )}
+                  )} */}
                 </Card.Body>
               </Card>
             );
