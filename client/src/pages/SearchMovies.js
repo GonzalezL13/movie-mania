@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'; //add useEffect
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import Image from '../images/p3-background.png';
 
 // import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
 
@@ -78,9 +79,8 @@ const SearchMovies = () => {
   // };
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
+      <Jumbotron fluid block style={{backgroundImage: `url(${Image})`, height: '340px'}}>
         <Container>
-          <h1>Movie Generator!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -94,7 +94,7 @@ const SearchMovies = () => {
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button type='submit' variant='success' size='lg'>
+                <Button type='submit' block style={{backgroundColor: '#1ACDC8', color: '#05000C', fontWeight: 'bold'}} size='lg'>
                   Submit Search
                 </Button>
               </Col>
