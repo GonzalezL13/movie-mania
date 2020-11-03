@@ -65,7 +65,7 @@ const SavedMovies = () => {
         return <h2>LOADING...</h2>;
     }
 
-//JUST NEEDS THE RETURN WITH HTML
+// JUST NEEDS THE RETURN WITH HTML
 
 
 
