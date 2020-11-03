@@ -65,11 +65,50 @@ const SavedMovies = () => {
         return <h2>LOADING...</h2>;
     }
 
-//JUST NEEDS THE RETURN WITH HTML
-
-
-
-
+    //JUST NEEDS THE RETURN WITH HTML
+    return (
+        <>
+            <Jumbotron fluid className='text-light bg-dark'>
+                <Container>
+                    <h1>Viewing {userData.username}'s movies!</h1>
+                </Container>
+            </Jumbotron>
+            <Container>
+                <h2>
+                    {userData.savedMovies?.length
+                        ? `Viewing ${userData.savedMovies.length} saved ${userData.savedMovies.length === 1 ? 'movie' : 'movies'
+                        }:`
+                        : 'You have no saved movies!'}
+                </h2>
+                <CardColumns>
+                    {userData.savedMovies?.map((movie) => {
+                        return (
+                            <Card key={movie.movieId} border='dark'>
+                                {movie.image ? (
+                                    <Card.Img src={movie.poster} alt={`The cover for ${movie.title}`} variant='top' />
+                                ) : null}
+                                <Card.Body>
+                                    <Card.Title>{movie.title}</Card.Title>
+                                    <p className='small'>Year: {movie.year}</p>
+                                    <Card.Text>{movie.description}</Card.Text>
+                                    <Button
+                                        className='btn-block btn-danger'
+                                        onClick={() => handleDeleteMovie(movie.movieId)}>
+                                        Delete this Movie!
+                                    </Button>
+                                </Card.Body>
+                            </Card>
+                        );
+                    })}
+                </CardColumns>
+            </Container>
+        </>
+    );
 };
+
+
+
+
+
 
 export default SavedMovies;
