@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Auth from '../utils/auth';
-import createUser from '../utils/API';
+import { createUser } from '../utils/API';
 import { Form, Button, Alert } from 'react-bootstrap';
 
 

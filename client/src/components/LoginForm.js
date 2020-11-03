@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 //create loginUser function in utils/API
-import loginUser from '../utils/API';
+import { Userlogin } from '../utils/API';
 //create JWT auth and tokens for Auth use
 import Auth from '../utils/auth';
 
@@ -26,7 +26,7 @@ const LoginForm = () => {
 
         try {
             //using yet to be created loginUser function from utils/API
-            const response = await loginUser(userFormData);
+            const response = await Userlogin(userFormData);
 
             if (!response.ok) {
                 throw new Error('Something went wrong!');

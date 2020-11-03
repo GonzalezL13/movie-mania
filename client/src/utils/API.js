@@ -66,19 +66,25 @@ import axios from 'axios';
 //   return axios.post("/api/users:id", { _id: params.id } )
 // };
 
-
-export default {
-
-  getUser: function({params}) {
-    return axios.get("/api/users:id", { _id: params.id } );
-  },
-
-  createUser: function(userData) {
-    return axios.post("/api/users", userData);
-  },
-
-  Userlogin: function({params}) {
-    return axios.post("/api/users:id", { _id: params.id } )
-  },
+export function createUser(userData) {
+  return axios.post("/api/users", userData);
 };
+
+export function Userlogin({params}) {
+  return axios.post("/api/users:id", { _id: params.id } )
+}
+// export default {
+
+//   getUser: function({params}) {
+//     return axios.get("/api/users:id", { _id: params.id } );
+//   },
+
+//   createUser: function(userData) {
+//     return axios.post("/api/users", userData);
+//   },
+
+//   Userlogin: function({params}) {
+//     return axios.post("/api/users:id", { _id: params.id } )
+//   },
+// };
 
