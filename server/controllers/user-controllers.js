@@ -35,8 +35,9 @@ const userController = {
   },
 
   //create a new user - test the async function
-  async createUser({ body }, res) {
-    const user = await User.create(body);
+  async createUser(req, res) {
+    console.log(req.body)
+    const user = await User.create(req.body.userData.userFormData);
 
     if (!user) {
       return res.status(400).json({ message: 'Something is wrong!' });
@@ -47,7 +48,8 @@ const userController = {
 
   //post user login - test the async function
   async Userlogin({ body }, res) {
-    const user = await User.findOne({ $or: [{ username: body.username }, { email: body.email }] });
+    // before update: [{ username: body.username }, { email: body.email }]
+    const user = await User.findOne({ $or: [{ email: body.email }, { password: body.password }] });
     if (!user) {
       return res.status(400).json({ message: "Can't find this user" });
     }

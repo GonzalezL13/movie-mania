@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import './App.css';
 
 //import pages & components here
 import SearchMovies from './pages/SearchMovies';
@@ -9,14 +8,12 @@ import Navbar from './components/Navbar';
 function App() {
   return (
       <Router>
-        <>
           <Navbar />
           <Switch>
             <Route exact path="/" component={SearchMovies} />
             {/* <Route exact path="/saved" component={SavedBooks} />  */}
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Switch>
-        </>
       </Router>
   );
 }

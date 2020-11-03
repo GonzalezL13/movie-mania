@@ -1,6 +1,7 @@
-// route to get logged in user's info (needs the token)
+import axios from "axios";
+
 export const getMe = (token) => {
-  return fetch('/api/users/me', {
+  return axios('/api/users/me', {
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
@@ -8,19 +9,15 @@ export const getMe = (token) => {
   });
 };
 
-
 export const createUser = (userData) => {
-  return fetch('/api/users', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userData),
-  });
-};
+  console.log(userData)
+     axios.post('/api/users', {
+       userData
+     })
+  };
 
 export const loginUser = (userData) => {
-  return fetch('/api/users/login', {
+  return axios('/api/users/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -28,12 +25,10 @@ export const loginUser = (userData) => {
     body: JSON.stringify(userData),
   });
 };
-
-
 
 // save movie data for a logged in user
 export const saveMovie = (movieData, token) => {
-  return fetch('/api/users', {
+  return axios('/api/users', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -44,26 +39,11 @@ export const saveMovie = (movieData, token) => {
 };
 
 // remove saved movie data for a logged in user
-export const deleteMovie = (movieId, token) => {
-  return fetch(`/api/users/movies/${movieId}`, {
+export const deleteMovie = (movieID, token) => {
+  return axios(`/api/users/movies/${movieID}`, {
     method: 'DELETE',
     headers: {
       authorization: `Bearer ${token}`,
     },
   });
 };
-
-
-
-// import axios from "axios";
-
-// export default {
-
-//   getUser: function({params}) {
-//     return axios.get("/api/users:id", { _id: params.id } );
-//   },
-
-//   createUser: function(userData) {
-//     return axios.post("/api/users", userData);
-//   }
-// };
