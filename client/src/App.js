@@ -1,4 +1,3 @@
-import Axios from 'axios';
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import './App.css';
@@ -7,8 +6,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SearchMovies from './pages/SearchMovies';
 import Navbar from './components/Navbar';
 
-//backend connection
 function App() {
+<<<<<<< HEAD
   // Axios({
   //   method: "GET",
   //   url: "http:localhost:3001",
@@ -19,6 +18,8 @@ function App() {
   //   console.log(res.data.message);
   // })
 
+=======
+>>>>>>> a886775eae92d57708a5a053be009fa476e40ee8
   return (
       <Router>
         <>
