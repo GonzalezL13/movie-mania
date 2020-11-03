@@ -18,18 +18,18 @@ const AppNavbar = () => {
                     <Navbar.Toggle aria-controls='navbar' />
                     <Navbar.Collapse id='navbar'>
                         <Nav className='nav-links'>
-                            <Nav.Link as={Link} to='/'>
+                            {/* <Nav.Link as={Link} to='/'>
                                 Search For Movies
-                            </Nav.Link>
+                            </Nav.Link> */}
                             {Auth.loggedIn() ? (
                                 <>
                                     <Nav.Link as={Link} to='/saved'>
-                                        See Your Movies
+                                        See Your Watchlist
                                     </Nav.Link>
                                     <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                                 </>
                             ) : (
-                                    <Nav.Link onClick={() => setDisplayModal(true)}>Login/Sign Up</Nav.Link>
+                                    <Nav.Link onClick={() => setDisplayModal(true)}>Login or Sign Up</Nav.Link>
                                 )}
                         </Nav>
                     </Navbar.Collapse>
