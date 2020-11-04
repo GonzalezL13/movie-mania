@@ -10,6 +10,7 @@ const LoginForm = () => {
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     //... takes an existing array and adds an element to it
@@ -26,24 +27,17 @@ const LoginForm = () => {
     }
 
     try {
-      const { data } = await userLogin(userFormData);
-
-      // console.log({data});
-
-      //   const { token, user } = await response.json();
-      //   console.log(user);
-
-      Auth.login(data.userLogin.token);
-      if (Auth.getToken()) {
-        //hide modal
-      }
+      const response = await userLogin(userFormData);
+      console.log(response.data);
+      Auth.login(response.data.token);
+ 
     } catch (err) {
       console.error(err);
-      //   setShowAlert(true);
+        setShowAlert(true);
     }
 
     setUserFormData({
-      username: "",
+    //   username: "",
       email: "",
       password: "",
     });

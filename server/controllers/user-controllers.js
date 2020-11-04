@@ -48,7 +48,7 @@ const userController = {
 
   //post user login - test the async function
   async userLogin(req, res) {
-    console.log(req.body);
+    // console.log(req.body);
     const email = req.body.userData.email
     // const user = await User.findOne({ $or: [{ email: req.body.email }, { password: req.body.password }] });
     const user = await User.findOne({email});

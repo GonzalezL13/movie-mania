@@ -18,9 +18,9 @@ const AppNavbar = () => {
                     <Navbar.Toggle aria-controls='navbar' />
                     <Navbar.Collapse id='navbar'>
                         <Nav className='nav-links'>
-                            {/* <Nav.Link as={Link} to='/'>
+                            <Nav.Link as={Link} to='/'>
                                 Search For Movies
-                            </Nav.Link> */}
+                            </Nav.Link>
                             {Auth.loggedIn() ? (
                                 <>
                                     <Nav.Link as={Link} to='/saved'>
