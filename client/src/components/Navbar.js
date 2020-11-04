@@ -26,7 +26,7 @@ const AppNavbar = () => {
                                     <Nav.Link block style={{color: '#1ACDC8'}} as={Link} to='/saved'>
                                         See Your Watchlist
                                     </Nav.Link>
-                                    <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                                    <Nav.Link block style={{color: '#1ACDC8'}} onClick={Auth.logout}>Logout</Nav.Link>
                                 </>
                             ) : (
                                     <Nav.Link block style={{color: '#1ACDC8'}} onClick={() => setDisplayModal(true)}>Login or Sign Up</Nav.Link>
