@@ -26,20 +26,20 @@ const LoginForm = () => {
     }
 
     try {
-      const { data } = await userLogin({
-          userFormData
-        });
+      const { data } = await userLogin(userFormData);
 
-        console.log(data);
+      // console.log({data});
 
-    //   const { token, user } = await response.json();
-    //   console.log(user);
-
+      //   const { token, user } = await response.json();
+      //   console.log(user);
 
       Auth.login(data.userLogin.token);
+      if (Auth.getToken()) {
+        //hide modal
+      }
     } catch (err) {
       console.error(err);
-    //   setShowAlert(true);
+      //   setShowAlert(true);
     }
 
     setUserFormData({

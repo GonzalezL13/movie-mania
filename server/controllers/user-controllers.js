@@ -37,7 +37,7 @@ const userController = {
   //create a new user - test the async function
   async createUser(req, res) {
     console.log(req.body)
-    const user = await User.create(req.body.userData.userFormData);
+    const user = await User.create(req.body.userFormData);
 
     if (!user) {
       return res.status(400).json({ message: 'Something is wrong!' });
@@ -47,14 +47,16 @@ const userController = {
   },
 
   //post user login - test the async function
-  async Userlogin({ body }, res) {
-    // before update: [{ username: body.username }, { email: body.email }]
-    const user = await User.findOne({ $or: [{ email: body.email }, { password: body.password }] });
+  async userLogin(req, res) {
+    console.log(req.body);
+    const email = req.body.userData.email
+    // const user = await User.findOne({ $or: [{ email: req.body.email }, { password: req.body.password }] });
+    const user = await User.findOne({email});
     if (!user) {
       return res.status(400).json({ message: "Can't find this user" });
     }
 
-    const correctPw = await user.isCorrectPassword(body.password);
+    const correctPw = await user.isCorrectPassword(req.body.userData.password);
 
     if (!correctPw) {
       return res.status(400).json({ message: 'Wrong password!' });
