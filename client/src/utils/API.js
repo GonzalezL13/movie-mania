@@ -10,21 +10,18 @@ export const getMe = (token) => {
 };
 
 export const createUser = (userData) => {
-  console.log(userData)
+  // console.log(userData)
      axios.post('/api/users', {
        userData
      })
   };
 
-export const Userlogin = (userData) => {
-  return axios('/api/users/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userData),
-  });
-};
+  export const userLogin = (userData) => {
+    console.log(userData)
+       axios.post('/api/users/login', {
+         userData
+       })
+    };
 
 // save movie data for a logged in user
 export const saveMovie = (movieData, token) => {

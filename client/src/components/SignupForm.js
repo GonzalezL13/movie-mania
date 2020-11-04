@@ -15,15 +15,6 @@ const SignUpForm = () => {
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-
-//   useEffect(() => {
-//     if (error) {
-//       setShowAlert(true);
-//     } else {
-//       setShowAlert(false);
-//     }
-//   });
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     //... takes an existing array and adds an element to it
@@ -40,8 +31,6 @@ const SignUpForm = () => {
     }
 
     try {
-      // create the createUser function in (/utils/API)
-    //   const response = await createUser(userFormData);
     const { data } = await createUser({
         userFormData
     });
