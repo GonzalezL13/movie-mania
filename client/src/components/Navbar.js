@@ -18,12 +18,12 @@ const AppNavbar = () => {
                     <Navbar.Toggle aria-controls='navbar' />
                     <Navbar.Collapse id='navbar'>
                         <Nav className='nav-links'>
-                            <Nav.Link as={Link} to='/'>
+                            <Nav.Link block style={{color: '#1ACDC8'}} as={Link} to='/'>
                                 Search For Movies
                             </Nav.Link>
                             {Auth.loggedIn() ? (
                                 <>
-                                    <Nav.Link as={Link} to='/saved'>
+                                    <Nav.Link block style={{color: '#1ACDC8'}} as={Link} to='/saved'>
                                         See Your Watchlist
                                     </Nav.Link>
                                     <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
@@ -43,10 +43,11 @@ const AppNavbar = () => {
                 <Tab.Container defaultActiveKey='login'>
                     <Modal.Header closeButton>
                         <Modal.Title id='signup-modal'>
-                            <Nav variant='pills'>
+                            <Nav variant='pills' style={{backgroundColor: '#96F2EF', color: '#217DA8', fontWeight: 'bold'}}>
                                 <Nav.Item>
                                     <Nav.Link eventKey='login'>Login</Nav.Link>
                                 </Nav.Item>
+                                
                                 <Nav.Item>
                                     <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
                                 </Nav.Item>

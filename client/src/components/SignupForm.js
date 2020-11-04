@@ -106,7 +106,7 @@ const SignUpForm = () => {
             Password is required!
           </Form.Control.Feedback>
         </Form.Group>
-        <Button
+        <Button style={{backgroundColor: '#1ACDC8', color: '#FEFEFE', fontWeight: 'bold'}}
           disabled={
             !(
               userFormData.username &&
@@ -115,7 +115,7 @@ const SignUpForm = () => {
             )
           }
           type="submit"
-          variant="success"
+          size='lg'
         >
           Submit
         </Button>

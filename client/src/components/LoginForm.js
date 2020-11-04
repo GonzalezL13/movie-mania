@@ -84,10 +84,10 @@ const LoginForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Button
+        <Button style={{backgroundColor: '#1ACDC8', color: '#FEFEFE', fontWeight: 'bold'}}
           disabled={!(userFormData.email && userFormData.password)}
           type="submit"
-          variant="success"
+          size= 'lg'
         >
           Submit
         </Button>

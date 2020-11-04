@@ -94,7 +94,7 @@ const SearchMovies = () => {
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button type='submit' block style={{backgroundColor: '#1ACDC8', color: '#05000C', fontWeight: 'bold'}} size='lg'>
+                <Button type='submit' block style={{backgroundColor: '#1ACDC8', color: '#FEFEFE', fontWeight: 'bold'}} size='lg'>
                   Submit Search
                 </Button>
               </Col>
