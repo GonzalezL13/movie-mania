@@ -31,22 +31,22 @@ const SignUpForm = () => {
     }
 
     try {
-    const { data } = await createUser({
-        userFormData
-    });
+      const response = await createUser(userFormData);
 
-        console.log(data);
 
-      Auth.login(data.createUser.token);
+
+      const { token, user } = await response.json();
+      console.log(user);
+      Auth.login(token);
     } catch (err) {
       console.error(err);
-    //   setShowAlert(true);
+      setShowAlert(true);
     }
 
     setUserFormData({
-      username: "",
-      email: "",
-      password: "",
+      username: '',
+      email: '',
+      password: '',
     });
   };
 
