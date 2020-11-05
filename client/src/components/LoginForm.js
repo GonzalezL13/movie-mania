@@ -28,7 +28,7 @@ const LoginForm = () => {
 
     try {
       const response = await userLogin(userFormData);
-      console.log(response.data);
+      console.log(response);
       Auth.login(response.data.token);
  
     } catch (err) {

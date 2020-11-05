@@ -10,14 +10,14 @@ export const getMe = (token) => {
 };
 
 export const createUser = (userData) => {
-  // console.log(userData)
-     axios.post('/api/users', {
+  console.log(userData)
+     return axios.post('/api/users', {
        userData
      })
   };
 
   export const userLogin = (userData) => {
-    console.log(userData)
+    // console.log(userData)
       return axios.post('/api/users/login', {
          userData
        })
