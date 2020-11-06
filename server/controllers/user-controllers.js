@@ -50,8 +50,9 @@ const userController = {
   async userLogin(req, res) {
     // console.log(req.body);
     const email = req.body.userData.email
+    const password = req.body.userData.password
     // const user = await User.findOne({ $or: [{ email: req.body.email }, { password: req.body.password }] });
-    const user = await User.findOne({email});
+    const user = await User.findOne({email, password});
     if (!user) {
       return res.status(400).json({ message: "Can't find this user" });
     }
