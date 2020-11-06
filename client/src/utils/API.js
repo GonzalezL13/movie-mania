@@ -9,6 +9,10 @@ export const getMe = (token) => {
   });
 };
 
+// export const getUserData = (token) => {
+//   return axios ('/api/user/')
+// }
+
 export const createUser = (userData) => {
   console.log(userData)
      return axios.post('/api/users', {

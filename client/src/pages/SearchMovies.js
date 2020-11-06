@@ -4,9 +4,9 @@ import React, { useState } from 'react'; //add useEffect
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Image from '../images/p3-background.png';
 
-// import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
+import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
 
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 
 const SearchMovies = () => {
   // create state for holding returned api data
@@ -15,7 +15,7 @@ const SearchMovies = () => {
   const [searchInput, setSearchInput] = useState('');
 
   // // create state to hold saved movieID values
-  // const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
+  const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
 
   // const [saveMovie, { error }] = useMutation(SAVE_MOVIE);
 
@@ -45,7 +45,7 @@ const SearchMovies = () => {
       const movieData = Search.map((movie) => ({
         title: movie.Title,
         poster: movie.Poster,
-        plot: movie.Plot
+        // plot: movie.Plot
       }));
 
       setSearchedMovies(movieData);
@@ -56,7 +56,7 @@ const SearchMovies = () => {
   };
 
   // // create function to handle saving a book to our database
-  // const handleSaveMovie = async (movieId) => {
+  const handleSaveMovie = async (movieId) => {
   //   // find the book in `searchedBooks` state by the matching id
   //   const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
 
@@ -76,7 +76,7 @@ const SearchMovies = () => {
   //   } catch (err) {
   //     console.error(err);
   //   }
-  // };
+  };
   return (
     <>
       <Jumbotron fluid block style={{backgroundImage: `url(${Image})`, height: '340px'}}>
@@ -118,18 +118,18 @@ const SearchMovies = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  <p className='small'>Plot: {movie.Plot}</p>
-                  <Card.Text>{movie.Plot}</Card.Text>
-                  {/* {Auth.loggedIn() && (
-                    // <Button
-                    //   disabled={savedMovieIds?.some((savedId) => savedId === movie.movieId)}
-                    //   className='btn-block btn-info'
-                    //   onClick={() => handleSaveMovie(movie.movieId)}>
-                    //   {savedMovieIds?.some((savedId) => savedId === movie.movieId)
-                    //     ? 'Movie Already Saved!'
-                    //     : 'Save This Movie!'}
-                    // </Button>
-                  )} */}
+                  {/* <p className='small'>Plot: {movie.Plot}</p> */}
+                  {/* <Card.Text>{movie.Plot}</Card.Text> */}
+                  {Auth.loggedIn() && (
+                    <Button
+                      disabled={savedMovieIds?.some((savedId) => savedId === movie.movieId)}
+                      className='btn-block btn-info'
+                      onClick={() => handleSaveMovie(movie.movieId)}>
+                      {savedMovieIds?.some((savedId) => savedId === movie.movieId)
+                        ? 'Movie already added to watchlist!'
+                        : 'Add to watchlist!'}
+                    </Button>
+                  )}
                 </Card.Body>
               </Card>
             );
