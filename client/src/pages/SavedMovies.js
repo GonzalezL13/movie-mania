@@ -64,7 +64,7 @@ const SavedMovies = () => {
 
     // if data isn't here yet, say so
     if (!userDataLength) {
-        return <h2>LOADING...</h2>;
+        return <h2>No movies added to watchlist</h2>;
     }
 
     //JUST NEEDS THE RETURN WITH HTML
