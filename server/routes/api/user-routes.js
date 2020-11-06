@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { authMiddleware} = require('../../utils/auth');
 
 const {
   getAllUsers,
@@ -15,6 +16,12 @@ router.route("/").get(getAllUsers).post(createUser);
 router.route("/login").post(userLogin);
 
 // //Set up GET one, PUT, and DELETE at api/users/:id
-router.route("/:id").get(getUserById).put(updateUser).delete(deleteUser);
+router.route("/:id").delete(deleteUser);
+// router.route("/me")
+// .get(getUserById)
+
+router.get("/me", authMiddleware, getUserById);
+
+router.put("/", authMiddleware, updateUser);
 
 module.exports = router;

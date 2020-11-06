@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export const getMe = (token) => {
-  return axios('/api/users/me', {
+  console.log(token) // successfully logging token in console
+  return axios(`/api/users/me`, {
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
@@ -29,7 +30,7 @@ export const createUser = (userData) => {
 
 // save movie data for a logged in user
 export const saveMovie = (movieData, token) => {
-  return axios('/api/users', {
+  return axios('/api/users/', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

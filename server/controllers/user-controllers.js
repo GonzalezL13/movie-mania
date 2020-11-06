@@ -12,9 +12,13 @@ const userController = {
         res.status(400).json(err);
       });
   },
+
+
   //get user by id
-  getUserById({ params }, res) {
-    User.findOne({ _id: params.id })
+  async getUserById(req, res) {
+    console.log('hey')
+    console.log(req.user);
+    User.findOne({ _id: req.user._id })
       //pull in movie data
       .populate({
         path: "savedMovies", // is this right?
@@ -66,8 +70,8 @@ const userController = {
   },
 
   //update a user
-  updateUser({ params, body }, res) {
-    User.findOneAndUpdate({ _id: params.id }, body, { new: true }) //new returns updated document
+  updateUser({ user, body }, res) {
+    User.findOneAndUpdate({ _id: user._id }, body, { new: true }) //new returns updated document
       .then((dbUserData) => {
         if (!dbUserData) {
           res.status(404).json({ message: "No user found with this id" });

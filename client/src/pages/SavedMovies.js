@@ -21,12 +21,14 @@ const SavedMovies = () => {
                 }
 
                 const response = await getMe(token);
+                console.log(response);
 
                 if (!response.ok) {
                     throw new Error('something went wrong!');
                 }
 
                 const user = await response.json();
+                console.log(user);
                 setUserData(user);
             } catch (err) {
                 console.error(err);
