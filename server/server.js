@@ -29,5 +29,10 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/movies', {
 // use this to log mongo queries being executed
 mongoose.set('debug', true);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+
+
 app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
 
